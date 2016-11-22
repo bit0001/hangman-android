@@ -96,4 +96,15 @@ public class HangmanTest {
         expected.add('w');
         assertThat(hangman.getGuessedLetters(), is(expected));
     }
+
+    @Test
+    public void whenPlayerGuessesAPreviouslyGuessedLetterItIsNotAddedTwiceToGuessedLetters() {
+        ArrayList<Character> expected = new ArrayList<>();
+        hangman.guess("t");
+        expected.add('t');
+        assertThat(hangman.getGuessedLetters(), is(expected));
+        hangman.guess("t");
+        assertThat(hangman.getGuessedLetters(), is(expected));
+    }
+
 }
