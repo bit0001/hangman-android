@@ -115,4 +115,19 @@ public class HangmanTest {
         hangman.guess("d");
         assertThat(hangman.isGameOver(), is(true));
     }
+
+    @Test
+    public void whenNoMoreGuessesLeftThenGameIsOver() {
+        hangman.guess("a");
+        hangman.guess("b");
+        hangman.guess("c");
+        hangman.guess("e");
+        hangman.guess("f");
+        hangman.guess("g");
+        hangman.guess("h");
+        hangman.guess("i");
+        hangman.guess("j");
+        hangman.guess("k");
+        assertThat(hangman.isGameOver(), is(true));
+    }
 }
