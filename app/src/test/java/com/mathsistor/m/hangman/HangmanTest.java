@@ -5,6 +5,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class HangmanTest {
 
     @Rule
@@ -13,7 +16,7 @@ public class HangmanTest {
 
     @Before
     public void setUp() {
-        hangman = new Hangman();
+        hangman = new Hangman("word");
     }
 
     @Test
@@ -38,5 +41,11 @@ public class HangmanTest {
     public void whenUserGuessesMoreThanOneCharacterThenAnExceptionIsThrownIfWordIsNotGuessed() {
         exception.expect(RuntimeException.class);
         hangman.guessLetter("love");
+    }
+
+    @Test
+    public void whenUserGuessesAWordCorrectlyThenGameIsOver() {
+        hangman.guessLetter("word");
+        assertThat(hangman.isGameOver(), is(true));
     }
 }
