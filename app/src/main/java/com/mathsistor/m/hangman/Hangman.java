@@ -52,12 +52,13 @@ public class Hangman {
                 newMaskedWord.append(c == guess.charAt(0) ? c : "?");
             }
             maskedWord = newMaskedWord.toString();
+            guessedLetters.add(guess.charAt(0));
         } else {
             if (!guessedLetters.contains(guess.charAt(0))) {
                 guessesLeft--;
+                guessedLetters.add(guess.charAt(0));
             }
         }
-        guessedLetters.add(guess.charAt(0));
     }
 
     public boolean isGameOver() {
