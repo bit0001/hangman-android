@@ -38,6 +38,14 @@ public class Hangman {
 
             throw new RuntimeException("Incorrect word guess");
         }
+
+        if (word.contains(guess)) {
+            StringBuilder newMaskedWord = new StringBuilder();
+            for(Character c: word.toCharArray()) {
+                newMaskedWord.append(c == guess.charAt(0) ? c : "?");
+            }
+            maskedWord = newMaskedWord.toString();
+        }
     }
 
     public boolean isGameOver() {
