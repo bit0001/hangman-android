@@ -29,6 +29,10 @@ public class Hangman {
     }
 
     public void guess(String guess) {
+        if (isGameOver) {
+            throw new RuntimeException("Game is over");
+        }
+
         if (guess.matches("[^A-Za-z]{1}")) {
             throw new RuntimeException("Invalid character");
         }
