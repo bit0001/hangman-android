@@ -27,5 +27,11 @@ public class HangmanTest {
         exception.expect(RuntimeException.class);
         hangman.guessLetter("?");
     }
-    
+
+    @Test
+    public void whenUserGuessesAnEmptyStringAnExceptionIsThrown() {
+        exception.expect(RuntimeException.class);
+        hangman.guessLetter("");
+    }
+
 }
