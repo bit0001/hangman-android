@@ -55,9 +55,9 @@ public class Hangman {
         } else {
             if (!guessedLetters.contains(guess.charAt(0))) {
                 guessesLeft--;
-                guessedLetters.add(guess.charAt(0));
             }
         }
+        guessedLetters.add(guess.charAt(0));
     }
 
     public boolean isGameOver() {
@@ -70,5 +70,9 @@ public class Hangman {
 
     public int getGuessesLeft() {
         return guessesLeft;
+    }
+
+    public ArrayList<Character> getGuessedLetters() {
+        return guessedLetters;
     }
 }
