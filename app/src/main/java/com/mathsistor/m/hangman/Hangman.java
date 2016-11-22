@@ -64,10 +64,9 @@ public class Hangman {
             }
         }
 
-        if (maskedWord.equals(word)) {
+        if (maskedWord.equals(word) || guessesLeft == 0) {
             isGameOver = true;
         }
-
     }
 
     public boolean isGameOver() {
