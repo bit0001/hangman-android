@@ -24,4 +24,12 @@ public class GuessLetterTest {
         onView(withId(R.id.text_field)).check(matches(withText("")));
     }
 
+    @Test
+    public void whenPlayerGuessesWellMaskedWordIsUpdated() {
+        Hangman game = hangmanActivityTestRule.getActivity().getGame();
+        String character = String.valueOf(game.getWord().charAt(0));
+        onView(withId(R.id.text_field)).perform(typeText(character));
+        onView(withId(R.id.guess_button)).perform(click());
+        onView(withId(R.id.word_to_guess)).check(matches(withText(character + "???")));
+    }
 }
