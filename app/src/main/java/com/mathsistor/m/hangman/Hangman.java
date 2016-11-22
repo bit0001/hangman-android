@@ -48,8 +48,12 @@ public class Hangman {
 
         if (word.contains(guess)) {
             StringBuilder newMaskedWord = new StringBuilder();
-            for(Character c: word.toCharArray()) {
-                newMaskedWord.append(c == guess.charAt(0) ? c : "?");
+            for(int i = 0; i < word.length(); i++) {
+                if (maskedWord.charAt(i) == '?') {
+                    newMaskedWord.append(word.charAt(i) == guess.charAt(0) ? word.charAt(i) : "?");
+                } else {
+                    newMaskedWord.append(word.charAt(i));
+                }
             }
             maskedWord = newMaskedWord.toString();
             guessedLetters.add(guess.charAt(0));
@@ -59,6 +63,11 @@ public class Hangman {
                 guessedLetters.add(guess.charAt(0));
             }
         }
+
+        if (maskedWord.equals(word)) {
+            isGameOver = true;
+        }
+
     }
 
     public boolean isGameOver() {
