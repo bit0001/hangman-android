@@ -71,4 +71,16 @@ public class HangmanTest {
         assertThat(hangman.getGuessesLeft(), is(Hangman.MAX_GUESSES));
     }
 
+        @Test
+    public void whenPlayerGuessesIncorrectlyThenGuessesLeftIsDecreased() {
+        hangman.guess("t");
+        assertThat(hangman.getGuessesLeft(), is(Hangman.MAX_GUESSES - 1));
+    }
+
+    @Test
+    public void whenPlayerGuessesTheSameLetterTwiceGuessesLeftIsNotReduced() {
+        hangman.guess("t");
+        hangman.guess("t");
+        assertThat(hangman.getGuessesLeft(), is(Hangman.MAX_GUESSES - 1));
+    }
 }
