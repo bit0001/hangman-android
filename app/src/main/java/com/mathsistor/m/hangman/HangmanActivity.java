@@ -29,6 +29,8 @@ public class HangmanActivity extends AppCompatActivity {
     }
 
     public void guess(View view) {
+        game.guess(editText.getText().toString());
+        wordToGuess.setText(game.getMaskedWord());
         editText.setText("");
     }
 
