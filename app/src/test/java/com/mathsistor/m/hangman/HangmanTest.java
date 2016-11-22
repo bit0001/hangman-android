@@ -59,4 +59,11 @@ public class HangmanTest {
         hangman = new Hangman("velocity");
         assertThat(hangman.getMaskedWord(), is("????????"));
     }
+
+    @Test
+    public void whenPlayerGuessesCorrectlyThenMaskedWordIsUpdated() {
+        hangman.guessLetter("w");
+        assertThat(hangman.getMaskedWord(), is("w???"));
+    }
+
 }
