@@ -5,6 +5,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.util.ArrayList;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -82,5 +84,16 @@ public class HangmanTest {
         hangman.guess("t");
         hangman.guess("t");
         assertThat(hangman.getGuessesLeft(), is(Hangman.MAX_GUESSES - 1));
+    }
+
+    @Test
+    public void whenUserGuessesAValidCharacterThenThisIsIncludedInGuessedLetters() {
+        ArrayList<Character> expected = new ArrayList<>();
+        hangman.guess("t");
+        expected.add('t');
+        assertThat(hangman.getGuessedLetters(), is(expected));
+        hangman.guess("w");
+        expected.add('w');
+        assertThat(hangman.getGuessedLetters(), is(expected));
     }
 }
