@@ -107,4 +107,12 @@ public class HangmanTest {
         assertThat(hangman.getGuessedLetters(), is(expected));
     }
 
+    @Test
+    public void whenLastLetterIsGuessedGameIsOver() {
+        hangman.guess("w");
+        hangman.guess("o");
+        hangman.guess("r");
+        hangman.guess("d");
+        assertThat(hangman.isGameOver(), is(true));
+    }
 }
