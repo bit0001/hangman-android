@@ -67,6 +67,7 @@
         <Button
             android:id="@+id/guess_button"
             android:text="Guess"
+            android:onClick="guess"
             android:textAllCaps="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
