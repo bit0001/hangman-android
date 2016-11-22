@@ -66,4 +66,9 @@ public class HangmanTest {
         assertThat(hangman.getMaskedWord(), is("w???"));
     }
 
+    @Test
+    public void whenGameStartsRemainingGuessesIsMAX_GUESSES() {
+        assertThat(hangman.getRemainingGuesses(), is(Hangman.MAX_GUESSES));
+    }
+
 }
