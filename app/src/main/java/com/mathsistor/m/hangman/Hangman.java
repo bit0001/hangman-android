@@ -48,6 +48,8 @@ public class Hangman {
                 newMaskedWord.append(c == guess.charAt(0) ? c : "?");
             }
             maskedWord = newMaskedWord.toString();
+        } else {
+            guessesLeft--;
         }
     }
 
