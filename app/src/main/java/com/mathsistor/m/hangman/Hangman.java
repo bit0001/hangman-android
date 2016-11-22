@@ -4,10 +4,21 @@ public class Hangman {
 
     private final String word;
     private boolean isGameOver;
+    private String maskedWord;
 
 
     public Hangman(String word) {
         this.word = word;
+        this.maskedWord = maskWord(word);
+    }
+
+    private String maskWord(String word) {
+        StringBuilder maskedWord = new StringBuilder();
+
+        for (Character _: word.toCharArray()) {
+            maskedWord.append("?");
+        }
+        return maskedWord.toString();
     }
 
     public void guessLetter(String guess) {
@@ -32,4 +43,9 @@ public class Hangman {
     public boolean isGameOver() {
         return isGameOver;
     }
+
+    public String getMaskedWord() {
+        return maskedWord;
+    }
+
 }
