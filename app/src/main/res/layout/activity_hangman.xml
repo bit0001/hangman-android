@@ -80,7 +80,13 @@
 
     <TextView
         android:id="@+id/guessed_letters"
-        android:text="You have guessed: (10 guesses remaining)"
+        android:text="You have guessed:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/remaining_guesses"
+        android:text="(10 guesses remaining)"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
