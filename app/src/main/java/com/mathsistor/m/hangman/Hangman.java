@@ -6,13 +6,13 @@ public class Hangman {
     private final String word;
     private boolean isGameOver;
     private String maskedWord;
-    private int remainingGuesses;
+    private int guessesLeft;
 
 
     public Hangman(String word) {
         this.word = word;
         this.maskedWord = maskWord(word);
-        this.remainingGuesses = MAX_GUESSES;
+        this.guessesLeft = MAX_GUESSES;
     }
 
     private String maskWord(String word) {
@@ -59,7 +59,7 @@ public class Hangman {
         return maskedWord;
     }
 
-    public int getRemainingGuesses() {
-        return remainingGuesses;
+    public int getGuessesLeft() {
+        return guessesLeft;
     }
 }
