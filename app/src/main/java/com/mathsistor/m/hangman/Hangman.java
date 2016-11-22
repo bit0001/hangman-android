@@ -20,12 +20,12 @@ public class Hangman {
         }
 
         if (guess.length() > 1) {
-            if (!guess.equals(word)) {
-                throw new RuntimeException("Incorrect word guess");
-            } else {
+            if (guess.equals(word)) {
                 isGameOver = true;
                 return;
             }
+
+            throw new RuntimeException("Incorrect word guess");
         }
     }
 
