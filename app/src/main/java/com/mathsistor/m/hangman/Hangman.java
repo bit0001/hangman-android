@@ -1,5 +1,7 @@
 package com.mathsistor.m.hangman;
 
+import java.util.ArrayList;
+
 public class Hangman {
 
     public static final int MAX_GUESSES = 10;
@@ -7,12 +9,14 @@ public class Hangman {
     private boolean isGameOver;
     private String maskedWord;
     private int guessesLeft;
+    private ArrayList<Character> guessedLetters;
 
 
     public Hangman(String word) {
         this.word = word;
         this.maskedWord = maskWord(word);
         this.guessesLeft = MAX_GUESSES;
+        guessedLetters = new ArrayList<>();
     }
 
     private String maskWord(String word) {
@@ -49,7 +53,10 @@ public class Hangman {
             }
             maskedWord = newMaskedWord.toString();
         } else {
-            guessesLeft--;
+            if (!guessedLetters.contains(guess.charAt(0))) {
+                guessesLeft--;
+                guessedLetters.add(guess.charAt(0));
+            }
         }
     }
 
