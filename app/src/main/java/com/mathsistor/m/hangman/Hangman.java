@@ -24,7 +24,7 @@ public class Hangman {
         return maskedWord.toString();
     }
 
-    public void guessLetter(String guess) {
+    public void guess(String guess) {
         if (guess.matches("[^A-Za-z]{1}")) {
             throw new RuntimeException("Invalid character");
         }

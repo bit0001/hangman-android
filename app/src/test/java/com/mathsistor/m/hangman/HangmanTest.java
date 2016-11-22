@@ -22,30 +22,30 @@ public class HangmanTest {
     @Test
     public void whenUserGuessesADigitAnExceptionIsThrown() {
         exception.expect(RuntimeException.class);
-        hangman.guessLetter("9");
+        hangman.guess("9");
     }
 
     @Test
     public void whenUserGuessesASpecialCharacterAnExceptionIsThrown() {
         exception.expect(RuntimeException.class);
-        hangman.guessLetter("?");
+        hangman.guess("?");
     }
 
     @Test
     public void whenUserGuessesAnEmptyStringAnExceptionIsThrown() {
         exception.expect(RuntimeException.class);
-        hangman.guessLetter("");
+        hangman.guess("");
     }
 
     @Test
     public void whenUserGuessesMoreThanOneCharacterThenAnExceptionIsThrownIfWordIsNotGuessed() {
         exception.expect(RuntimeException.class);
-        hangman.guessLetter("love");
+        hangman.guess("love");
     }
 
     @Test
     public void whenUserGuessesAWordCorrectlyThenGameIsOver() {
-        hangman.guessLetter("word");
+        hangman.guess("word");
         assertThat(hangman.isGameOver(), is(true));
     }
 
@@ -62,13 +62,13 @@ public class HangmanTest {
 
     @Test
     public void whenPlayerGuessesCorrectlyThenMaskedWordIsUpdated() {
-        hangman.guessLetter("w");
+        hangman.guess("w");
         assertThat(hangman.getMaskedWord(), is("w???"));
     }
 
     @Test
     public void whenGameStartsRemainingGuessesIsMAX_GUESSES() {
-        assertThat(hangman.getRemainingGuesses(), is(Hangman.MAX_GUESSES));
+        assertThat(hangman.getGuessesLeft(), is(Hangman.MAX_GUESSES));
     }
 
 }
