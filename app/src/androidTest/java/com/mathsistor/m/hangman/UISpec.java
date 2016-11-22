@@ -25,6 +25,7 @@ public class UISpec {
                 R.id.the_word_label, R.id.word_to_guess,
                 R.id.text_field, R.id.guess_button,
                 R.id.new_game_button, R.id.guessed_letters,
+                R.id.remaining_guesses
         };
 
         for (int id: ids) {
@@ -42,6 +43,7 @@ public class UISpec {
         onView(withId(R.id.text_field)).check(matches(withText("")));
         onView(withId(R.id.new_game_button)).check(matches(withText("New Game")));
         onView(withId(R.id.guess_button)).check(matches(withText("Guess")));
-        onView(withId(R.id.guessed_letters)).check(matches(withText("You have guessed: (10 guesses remaining)")));
+        onView(withId(R.id.guessed_letters)).check(matches(withText("You have guessed:")));
+        onView(withId(R.id.remaining_guesses)).check(matches(withText("(10 guesses remaining)")));
     }
 }
