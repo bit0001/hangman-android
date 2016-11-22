@@ -5,7 +5,7 @@ public class Hangman {
     private final String word = "word";
 
     public void guessLetter(String guess) {
-        if (guess.matches("[^A-Za-z]")) {
+        if (guess.matches("[^A-Za-z]{1}")) {
             throw new RuntimeException("Invalid character");
         }
 
