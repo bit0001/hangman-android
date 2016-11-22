@@ -48,4 +48,15 @@ public class HangmanTest {
         hangman.guessLetter("word");
         assertThat(hangman.isGameOver(), is(true));
     }
+
+    @Test
+    public void givenWordToGuessIsWordWhenGameStartsThenWordToGuessIsMasked() {
+        assertThat(hangman.getMaskedWord(), is("????"));
+    }
+
+    @Test
+    public void givenWordToGuessIsVelocityWhenGameStartsThenWordToGuessIsMasked() {
+        hangman = new Hangman("velocity");
+        assertThat(hangman.getMaskedWord(), is("????????"));
+    }
 }
