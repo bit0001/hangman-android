@@ -88,4 +88,8 @@ public class Hangman {
     public ArrayList<Character> getGuessedLetters() {
         return guessedLetters;
     }
+
+    public String getWord() {
+        return word;
+    }
 }

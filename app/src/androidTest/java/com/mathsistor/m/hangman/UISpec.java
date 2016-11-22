@@ -36,9 +36,10 @@ public class UISpec {
 
     @Test
     public void whenUserLaunchesTheAppThenContentOfUIElementsIsDisplayedCorrectly() {
+        String maskedWord = hangmanActivityTestRule.getActivity().getGame().getMaskedWord();
         onView(withId(R.id.hangman_title)).check(matches(withText("Hangman")));
         onView(withId(R.id.the_word_label)).check(matches(withText("The word:")));
-        onView(withId(R.id.word_to_guess)).check(matches(withText("?????")));
+        onView(withId(R.id.word_to_guess)).check(matches(withText(maskedWord)));
         onView(withId(R.id.hangman_image)).check(matches(withDrawable(R.drawable.hangman0)));
         onView(withId(R.id.text_field)).check(matches(withText("")));
         onView(withId(R.id.new_game_button)).check(matches(withText("New Game")));
