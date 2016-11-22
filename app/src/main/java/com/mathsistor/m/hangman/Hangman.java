@@ -1,6 +1,9 @@
 package com.mathsistor.m.hangman;
 
 public class Hangman {
+
+    private final String word = "word";
+
     public void guessLetter(String guess) {
         if (guess.matches("[^A-Za-z]")) {
             throw new RuntimeException("Invalid character");
@@ -8,6 +11,12 @@ public class Hangman {
 
         if (guess.isEmpty()) {
             throw new RuntimeException("Empty string");
+        }
+
+        if (guess.length() > 1) {
+            if (!guess.equals(word)) {
+                throw new RuntimeException("Incorrect word guess");
+            }
         }
     }
 }
