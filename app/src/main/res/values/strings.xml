@@ -3,4 +3,6 @@
     <string name="you_have_guessed">You have guessed:</string>
     <string name="guesses_left">" guesses remaining)"</string>
     <string name="you_did_it">Well done, you did it!</string>
+    <string name="alphabet">abcdefghijklmnopqrstuvwxyz</string>
+    <string name="you_lost">You lost! Try a new game.</string>
 </resources>
