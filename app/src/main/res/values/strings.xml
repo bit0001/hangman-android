@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Hangman</string>
     <string name="you_have_guessed">You have guessed:</string>
+    <string name="guesses_left">" guesses remaining)"</string>
 </resources>

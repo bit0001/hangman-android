@@ -36,7 +36,10 @@ public class UISpec {
 
     @Test
     public void whenUserLaunchesTheAppThenContentOfUIElementsIsDisplayedCorrectly() {
-        String maskedWord = hangmanActivityTestRule.getActivity().getGame().getMaskedWord();
+        HangmanActivity activity = hangmanActivityTestRule.getActivity();
+        Hangman game = activity.getGame();
+        String maskedWord = game.getMaskedWord();
+        String guessesLeftText = activity.getResources().getString(R.string.guesses_left);
         onView(withId(R.id.hangman_title)).check(matches(withText("Hangman")));
         onView(withId(R.id.the_word_label)).check(matches(withText("The word:")));
         onView(withId(R.id.word_to_guess)).check(matches(withText(maskedWord)));
@@ -45,6 +48,6 @@ public class UISpec {
         onView(withId(R.id.new_game_button)).check(matches(withText("New Game")));
         onView(withId(R.id.guess_button)).check(matches(withText("Guess")));
         onView(withId(R.id.guessed_letters)).check(matches(withText(R.string.you_have_guessed)));
-        onView(withId(R.id.remaining_guesses)).check(matches(withText("(10 guesses remaining)")));
+        onView(withId(R.id.remaining_guesses)).check(matches(withText("(" + game.getGuessesLeft() + guessesLeftText)));
     }
 }
