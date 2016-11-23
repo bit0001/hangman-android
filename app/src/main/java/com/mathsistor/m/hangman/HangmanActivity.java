@@ -5,10 +5,13 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,7 +33,27 @@ public class HangmanActivity extends AppCompatActivity {
     @BindView(R.id.game_result)
     TextView gameResult;
 
+    @BindView(R.id.hangman_image)
+    ImageView hangmanImage;
+
     private Hangman game;
+
+    private static ArrayList<Integer> photos;
+
+    static {
+        photos = new ArrayList<>();
+        photos.add(R.drawable.hangman10);
+        photos.add(R.drawable.hangman9);
+        photos.add(R.drawable.hangman8);
+        photos.add(R.drawable.hangman7);
+        photos.add(R.drawable.hangman6);
+        photos.add(R.drawable.hangman5);
+        photos.add(R.drawable.hangman4);
+        photos.add(R.drawable.hangman3);
+        photos.add(R.drawable.hangman2);
+        photos.add(R.drawable.hangman1);
+        photos.add(R.drawable.hangman0);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +69,7 @@ public class HangmanActivity extends AppCompatActivity {
         guessedLetters.setText(
                 getGuessedLettersLabelText());
         guessesLeft.setText("(" + game.getGuessesLeft() +  getString(R.string.guesses_left));
+        hangmanImage.setImageResource(photos.get(game.getGuessesLeft()));
     }
 
     @NonNull
