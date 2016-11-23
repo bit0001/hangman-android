@@ -5,7 +5,7 @@
     <string name="you_did_it">Well done, you did it!</string>
     <string name="alphabet">abcdefghijklmnopqrstuvwxyz</string>
     <string name="you_lost">You lost! Try a new game.</string>
-    <string name="empty_guess">You entered an empty guess!</string>
+    <string name="empty_guess">Empty guess.</string>
     <string name="invalid_character">Invalid character.</string>
     <string name="wrong_guess">Your guessed word is wrong!</string>
     <string name="game_is_over">Game is over. Try a new game!</string>

@@ -28,7 +28,7 @@ public class Hangman {
         return maskedWord.toString();
     }
 
-    public void guess(String guess) throws InvalidCharacterException {
+    public void guess(String guess) throws Exception {
         checkGameIsNotOver();
         checkGuessIsNotEmpty(guess);
         checkGuessIsAValidCharacter(guess);
@@ -80,15 +80,15 @@ public class Hangman {
         return false;
     }
 
-    private void checkGuessIsNotEmpty(String guess) {
+    private void checkGuessIsNotEmpty(String guess) throws EmptyGuessException {
         if (guess.isEmpty()) {
-            throw new RuntimeException("Empty string");
+            throw new EmptyGuessException("Empty guess.");
         }
     }
 
     private void checkGuessIsAValidCharacter(String guess) throws InvalidCharacterException {
         if (guess.matches("[^A-Za-z]{1}")) {
-            throw new InvalidCharacterException("Invalid character");
+            throw new InvalidCharacterException("Invalid character.");
         }
     }
 

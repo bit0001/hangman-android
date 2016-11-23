@@ -116,8 +116,8 @@ public class HangmanActivity extends AppCompatActivity {
                 default:
                     throw new RuntimeException();
             }
-        } catch (InvalidCharacterException e) {
-            Toast.makeText(this, R.string.invalid_character, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
         updateUI();
