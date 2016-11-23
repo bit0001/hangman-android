@@ -22,31 +22,31 @@ public class HangmanTest {
     }
 
     @Test
-    public void whenUserGuessesADigitAnExceptionIsThrown() {
-        exception.expect(RuntimeException.class);
+    public void whenUserGuessesADigitAnExceptionIsThrown() throws InvalidCharacterException {
+        exception.expect(InvalidCharacterException.class);
         hangman.guess("9");
     }
 
     @Test
-    public void whenUserGuessesASpecialCharacterAnExceptionIsThrown() {
-        exception.expect(RuntimeException.class);
+    public void whenUserGuessesASpecialCharacterAnExceptionIsThrown() throws InvalidCharacterException {
+        exception.expect(InvalidCharacterException.class);
         hangman.guess("?");
     }
 
     @Test
-    public void whenUserGuessesAnEmptyStringAnExceptionIsThrown() {
+    public void whenUserGuessesAnEmptyStringAnExceptionIsThrown() throws InvalidCharacterException {
         exception.expect(RuntimeException.class);
         hangman.guess("");
     }
 
     @Test
-    public void whenUserGuessesMoreThanOneCharacterThenAnExceptionIsThrownIfWordIsNotGuessed() {
+    public void whenUserGuessesMoreThanOneCharacterThenAnExceptionIsThrownIfWordIsNotGuessed() throws InvalidCharacterException {
         exception.expect(RuntimeException.class);
         hangman.guess("love");
     }
 
     @Test
-    public void whenUserGuessesAWordCorrectlyThenGameIsOver() {
+    public void whenUserGuessesAWordCorrectlyThenGameIsOver() throws InvalidCharacterException {
         hangman.guess("word");
         assertThat(hangman.isGameOver(), is(true));
     }
@@ -63,7 +63,7 @@ public class HangmanTest {
     }
 
     @Test
-    public void whenPlayerGuessesCorrectlyThenMaskedWordIsUpdated() {
+    public void whenPlayerGuessesCorrectlyThenMaskedWordIsUpdated() throws InvalidCharacterException {
         hangman.guess("w");
         assertThat(hangman.getMaskedWord(), is("w???"));
     }
@@ -74,20 +74,20 @@ public class HangmanTest {
     }
 
         @Test
-    public void whenPlayerGuessesIncorrectlyThenGuessesLeftIsDecreased() {
+    public void whenPlayerGuessesIncorrectlyThenGuessesLeftIsDecreased() throws InvalidCharacterException {
         hangman.guess("t");
         assertThat(hangman.getGuessesLeft(), is(Hangman.MAX_GUESSES - 1));
     }
 
     @Test
-    public void whenPlayerGuessesTheSameLetterTwiceGuessesLeftIsNotReduced() {
+    public void whenPlayerGuessesTheSameLetterTwiceGuessesLeftIsNotReduced() throws InvalidCharacterException {
         hangman.guess("t");
         hangman.guess("t");
         assertThat(hangman.getGuessesLeft(), is(Hangman.MAX_GUESSES - 1));
     }
 
     @Test
-    public void whenUserGuessesAValidCharacterThenThisIsIncludedInGuessedLetters() {
+    public void whenUserGuessesAValidCharacterThenThisIsIncludedInGuessedLetters() throws InvalidCharacterException {
         ArrayList<Character> expected = new ArrayList<>();
         hangman.guess("t");
         expected.add('t');
@@ -98,7 +98,7 @@ public class HangmanTest {
     }
 
     @Test
-    public void whenPlayerGuessesAPreviouslyGuessedLetterItIsNotAddedTwiceToGuessedLetters() {
+    public void whenPlayerGuessesAPreviouslyGuessedLetterItIsNotAddedTwiceToGuessedLetters() throws InvalidCharacterException {
         ArrayList<Character> expected = new ArrayList<>();
         hangman.guess("t");
         expected.add('t');
@@ -112,7 +112,7 @@ public class HangmanTest {
     }
 
     @Test
-    public void whenLastLetterIsGuessedGameIsOver() {
+    public void whenLastLetterIsGuessedGameIsOver() throws InvalidCharacterException {
         hangman.guess("w");
         hangman.guess("o");
         hangman.guess("r");
@@ -121,7 +121,7 @@ public class HangmanTest {
     }
 
     @Test
-    public void whenNoMoreGuessesLeftThenGameIsOver() {
+    public void whenNoMoreGuessesLeftThenGameIsOver() throws InvalidCharacterException {
         hangman.guess("a");
         hangman.guess("b");
         hangman.guess("c");

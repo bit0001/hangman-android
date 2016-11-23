@@ -28,7 +28,7 @@ public class Hangman {
         return maskedWord.toString();
     }
 
-    public void guess(String guess) {
+    public void guess(String guess) throws InvalidCharacterException {
         checkGameIsNotOver();
         checkGuessIsNotEmpty(guess);
         checkGuessIsAValidCharacter(guess);
@@ -86,9 +86,9 @@ public class Hangman {
         }
     }
 
-    private void checkGuessIsAValidCharacter(String guess) {
+    private void checkGuessIsAValidCharacter(String guess) throws InvalidCharacterException {
         if (guess.matches("[^A-Za-z]{1}")) {
-            throw new RuntimeException("Invalid character");
+            throw new InvalidCharacterException("Invalid character");
         }
     }
 
