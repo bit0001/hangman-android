@@ -95,4 +95,8 @@ public class HangmanActivity extends AppCompatActivity {
         return game;
     }
 
+    public void newGame(View view) {
+        game = new Hangman("word");
+        updateUI();
+    }
 }
