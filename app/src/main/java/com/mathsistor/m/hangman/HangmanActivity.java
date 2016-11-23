@@ -67,6 +67,9 @@ public class HangmanActivity extends AppCompatActivity {
                 case "Invalid character":
                     Toast.makeText(this, R.string.invalid_character, Toast.LENGTH_SHORT).show();
                     break;
+                case "Incorrect word guess":
+                    Toast.makeText(this, R.string.wrong_guess, Toast.LENGTH_SHORT).show();
+                    break;
                 default:
                     throw new RuntimeException();
             }

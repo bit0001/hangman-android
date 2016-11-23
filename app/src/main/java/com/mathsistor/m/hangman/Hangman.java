@@ -46,6 +46,11 @@ public class Hangman {
                 isGameOver = true;
                 return;
             }
+            guessesLeft--;
+
+            if (guessesLeft == 0) {
+                isGameOver = true;
+            }
 
             throw new RuntimeException("Incorrect word guess");
         }
