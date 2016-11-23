@@ -55,6 +55,10 @@ public class Hangman {
             throw new RuntimeException("Incorrect word guess");
         }
 
+        if (guessedLetters.contains(guess.charAt(0))) {
+            return;
+        }
+
         if (word.contains(guess)) {
             StringBuilder newMaskedWord = new StringBuilder();
             for(int i = 0; i < word.length(); i++) {

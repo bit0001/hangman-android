@@ -105,6 +105,10 @@ public class HangmanTest {
         assertThat(hangman.getGuessedLetters(), is(expected));
         hangman.guess("t");
         assertThat(hangman.getGuessedLetters(), is(expected));
+        hangman.guess("w");
+        expected.add('w');
+        hangman.guess("w");
+        assertThat(hangman.getGuessedLetters(), is(expected));
     }
 
     @Test
@@ -130,4 +134,5 @@ public class HangmanTest {
         hangman.guess("k");
         assertThat(hangman.isGameOver(), is(true));
     }
+
 }
