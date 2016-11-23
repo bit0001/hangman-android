@@ -1,6 +1,5 @@
 package com.mathsistor.m.hangman;
 
-import android.support.annotation.NonNull;
 import android.support.test.rule.ActivityTestRule;
 
 import org.junit.Before;
@@ -45,6 +44,30 @@ public class GuessLetterTest {
         )));
     }
 
+    @Test
+    public void whenPlayerGuessesWrongUIIsUpdatedProperly() {
+        String character = getFirstCharacterNotInWord();
+        onView(withId(R.id.text_field)).perform(typeText(character));
+        onView(withId(R.id.guess_button)).perform(click());
+        onView(withId(R.id.word_to_guess)).check(matches(withText(getMaskedWord())));
+        onView(withId(R.id.guessed_letters)).check(matches(withText(
+            activity.getResources().getString(R.string.you_have_guessed) + " " + character + "."
+        )));
+        onView(withId(R.id.remaining_guesses)).check(matches(withText(
+            "(" + (Hangman.MAX_GUESSES - 1) + activity.getResources().getString(R.string.guesses_left)
+        )));
+    }
+
+    private String getFirstCharacterNotInWord() {
+        String englishLetters = "abcdefghijklmopqrstuvwxyz";
+        String word = activity.getGame().getWord().toLowerCase();
+        for (Character c: englishLetters.toCharArray()) {
+            if (!word.contains(String.valueOf(c))) {
+                return String.valueOf(c);
+            }
+        }
+        return null;
+    }
 
     private String getMaskedWordButFirstCharacter() {
         String word = activity.getGame().getWord();
@@ -56,4 +79,12 @@ public class GuessLetterTest {
         return maskedWord.toString();
     }
 
+    private String getMaskedWord() {
+        StringBuilder maskedWord = new StringBuilder();
+        for (int i = 0; i < activity.getGame().getWord().length(); i++) {
+            maskedWord.append("?");
+        }
+
+        return maskedWord.toString();
+    }
 }
