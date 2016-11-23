@@ -59,7 +59,7 @@ public class GuessLetterTest {
     }
 
     private String getFirstCharacterNotInWord() {
-        String englishLetters = "abcdefghijklmopqrstuvwxyz";
+        String englishLetters = activity.getString(R.string.alphabet);
         String word = activity.getGame().getWord().toLowerCase();
         for (Character c: englishLetters.toCharArray()) {
             if (!word.contains(String.valueOf(c))) {
