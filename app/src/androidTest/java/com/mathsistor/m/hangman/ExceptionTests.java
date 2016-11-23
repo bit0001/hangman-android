@@ -52,4 +52,13 @@ public class ExceptionTests {
                 "(" + (Hangman.MAX_GUESSES - 1) + activity.getResources().getString(R.string.guesses_left)
         )));
     }
+
+    @Test
+    public void givenGameIsOverWhenUserTriesToContinuePlayingAToastIsDisplayed() {
+        onView(withId(R.id.text_field)).perform(typeText(activity.getGame().getWord()));
+        onView(withId(R.id.guess_button)).perform(click());
+        onView(withId(R.id.text_field)).perform(typeText("x"));
+        onView(withId(R.id.guess_button)).perform(click());
+        onView(withText(R.string.game_is_over)).inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).check(matches(isDisplayed()));
+    }
 }
