@@ -1,6 +1,7 @@
 package com.mathsistor.m.hangman;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -38,16 +39,20 @@ public class HangmanActivity extends AppCompatActivity {
 
     private void updateUI() {
         wordToGuess.setText(game.getMaskedWord());
+        guessedLetters.setText(
+                getGuessedLettersLabelText());
         guessesLeft.setText("(" + game.getGuessesLeft() +  getString(R.string.guesses_left));
+    }
+
+    @NonNull
+    private String getGuessedLettersLabelText() {
+        String preamble = getResources().getString(R.string.you_have_guessed);
+        return preamble + (game.getGuessedLetters().isEmpty() ? "" : " " + StringUtils.join(game.getGuessedLetters(), ",") + ".");
     }
 
     public void guess(View view) {
         game.guess(editText.getText().toString());
-        wordToGuess.setText(game.getMaskedWord());
-        guessedLetters.setText(
-                getResources().getString(R.string.you_have_guessed) + " " +
-                        StringUtils.join(game.getGuessedLetters(), ",") + ".");
-        guessesLeft.setText("(" + game.getGuessesLeft() +  getString(R.string.guesses_left));
+        updateUI();
         editText.setText("");
     }
 
