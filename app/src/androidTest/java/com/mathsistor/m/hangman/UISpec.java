@@ -44,7 +44,7 @@ public class UISpec {
         onView(withId(R.id.text_field)).check(matches(withText("")));
         onView(withId(R.id.new_game_button)).check(matches(withText("New Game")));
         onView(withId(R.id.guess_button)).check(matches(withText("Guess")));
-        onView(withId(R.id.guessed_letters)).check(matches(withText("You have guessed:")));
+        onView(withId(R.id.guessed_letters)).check(matches(withText(R.string.you_have_guessed)));
         onView(withId(R.id.remaining_guesses)).check(matches(withText("(10 guesses remaining)")));
     }
 }
