@@ -75,6 +75,18 @@ public class HangmanActivity extends AppCompatActivity {
                 getGuessedLettersLabelText());
         guessesLeft.setText("(" + game.getGuessesLeft() +  getString(R.string.guesses_left));
         hangmanImage.setImageResource(photos.get(game.getGuessesLeft()));
+        editText.setText("");
+
+        if (game.isGameOver()) {
+            gameResult.setVisibility(View.VISIBLE);
+            if (game.getWord().equals(game.getMaskedWord())) {
+                gameResult.setText(R.string.you_did_it);
+            } else {
+                gameResult.setText(R.string.you_lost);
+            }
+        } else {
+            gameResult.setVisibility(View.INVISIBLE);
+        }
     }
 
     @NonNull
@@ -108,16 +120,6 @@ public class HangmanActivity extends AppCompatActivity {
         }
 
         updateUI();
-        editText.setText("");
-
-        if (game.isGameOver()) {
-            gameResult.setVisibility(View.VISIBLE);
-            if (game.getWord().equals(game.getMaskedWord())) {
-                gameResult.setText(R.string.you_did_it);
-            } else {
-                gameResult.setText(R.string.you_lost);
-            }
-        }
     }
 
     public Hangman getGame() {
