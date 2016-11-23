@@ -12,6 +12,8 @@ import android.widget.Toast;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +42,8 @@ public class HangmanActivity extends AppCompatActivity {
 
     private static ArrayList<Integer> photos;
 
+    private ArrayList<String> words = new ArrayList<>();
+
     static {
         photos = new ArrayList<>();
         photos.add(R.drawable.hangman10);
@@ -59,8 +63,9 @@ public class HangmanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hangman);
+        loadWords();
         ButterKnife.bind(this);
-        game = new Hangman("word");
+        game = new Hangman(getRandomWord());
         updateUI();
     }
 
@@ -120,7 +125,20 @@ public class HangmanActivity extends AppCompatActivity {
     }
 
     public void newGame(View view) {
-        game = new Hangman("word");
+        game = new Hangman(getRandomWord());
         updateUI();
+    }
+
+    private void loadWords() {
+        Scanner scanner = new Scanner(getResources().openRawResource(R.raw.words));
+
+        while(scanner.hasNextLine()) {
+            words.add(scanner.nextLine());
+        }
+    }
+
+    private String getRandomWord() {
+        Random random = new Random();
+        return words.get(random.nextInt(words.size()));
     }
 }
