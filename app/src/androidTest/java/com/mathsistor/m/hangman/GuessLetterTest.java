@@ -1,7 +1,9 @@
 package com.mathsistor.m.hangman;
 
+import android.support.annotation.NonNull;
 import android.support.test.rule.ActivityTestRule;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -13,23 +15,45 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 public class GuessLetterTest {
+
     @Rule
     public ActivityTestRule<HangmanActivity> hangmanActivityTestRule =
             new ActivityTestRule<>(HangmanActivity.class);
 
+    private HangmanActivity activity;
+
+    @Before
+    public void setUp() {
+        activity = hangmanActivityTestRule.getActivity();
+    }
+
     @Test
     public void whenUserGuessesALetterTextFieldIsClean() {
-        onView(withId(R.id.text_field)).perform(typeText("a"));
+        onView(withId(R.id.text_field)).perform(typeText("x"));
         onView(withId(R.id.guess_button)).perform(click());
         onView(withId(R.id.text_field)).check(matches(withText("")));
     }
 
     @Test
-    public void whenPlayerGuessesWellMaskedWordIsUpdated() {
-        Hangman game = hangmanActivityTestRule.getActivity().getGame();
-        String character = String.valueOf(game.getWord().charAt(0));
+    public void whenPlayerGuessesWellUIIsUpdatedProperly() {
+        String character = String.valueOf(activity.getGame().getWord().charAt(0));
         onView(withId(R.id.text_field)).perform(typeText(character));
         onView(withId(R.id.guess_button)).perform(click());
-        onView(withId(R.id.word_to_guess)).check(matches(withText(character + "???")));
+        onView(withId(R.id.word_to_guess)).check(matches(withText(getMaskedWordButFirstCharacter())));
+        onView(withId(R.id.guessed_letters)).check(matches(withText(
+                activity.getResources().getString(R.string.you_have_guessed) + " " + character + "."
+        )));
     }
+
+
+    private String getMaskedWordButFirstCharacter() {
+        String word = activity.getGame().getWord();
+        StringBuilder maskedWord = new StringBuilder(String.valueOf(word.charAt(0)));
+        for (int i = 1; i < word.length(); i++) {
+            maskedWord.append("?");
+        }
+
+        return maskedWord.toString();
+    }
+
 }
