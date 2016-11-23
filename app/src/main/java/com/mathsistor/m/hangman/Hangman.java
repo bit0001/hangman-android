@@ -92,9 +92,9 @@ public class Hangman {
         }
     }
 
-    private void checkGameIsNotOver() {
+    private void checkGameIsNotOver() throws GameOverException {
         if (isGameOver) {
-            throw new RuntimeException("Game is over");
+            throw new GameOverException("Game is over. Try a new game!");
         }
     }
 

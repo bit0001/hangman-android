@@ -97,16 +97,6 @@ public class HangmanActivity extends AppCompatActivity {
     public void guess(View view) {
         try {
             game.guess(editText.getText().toString());
-        } catch (RuntimeException e) {
-            String message = e.getMessage();
-
-            switch (message) {
-                case "Game is over":
-                    Toast.makeText(this, R.string.game_is_over, Toast.LENGTH_SHORT).show();
-                    break;
-                default:
-                    throw new RuntimeException();
-            }
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }

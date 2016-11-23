@@ -46,6 +46,13 @@ public class HangmanTest {
     }
 
     @Test
+    public void givenGameIsOverWhenPlayerGuessesAnExceptionIsThrown() throws Exception {
+        hangman.guess("word");
+        exception.expect(GameOverException.class);
+        hangman.guess("x");
+    }
+
+    @Test
     public void whenUserGuessesAWordCorrectlyThenGameIsOver() throws Exception {
         hangman.guess("word");
         assertThat(hangman.isGameOver(), is(true));
