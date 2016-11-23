@@ -47,7 +47,7 @@ public class HangmanActivity extends AppCompatActivity {
     @NonNull
     private String getGuessedLettersLabelText() {
         String preamble = getResources().getString(R.string.you_have_guessed);
-        return preamble + (game.getGuessedLetters().isEmpty() ? "" : " " + StringUtils.join(game.getGuessedLetters(), ",") + ".");
+        return preamble + (game.getGuessedLetters().isEmpty() ? "" : " " + StringUtils.join(game.getGuessedLetters(), ", ") + ".");
     }
 
     public void guess(View view) {
