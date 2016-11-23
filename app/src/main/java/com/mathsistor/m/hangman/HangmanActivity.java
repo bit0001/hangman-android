@@ -26,6 +26,9 @@ public class HangmanActivity extends AppCompatActivity {
     @BindView(R.id.remaining_guesses)
     TextView guessesLeft;
 
+    @BindView(R.id.game_result)
+    TextView gameResult;
+
     private Hangman game;
 
     @Override
@@ -54,6 +57,14 @@ public class HangmanActivity extends AppCompatActivity {
         game.guess(editText.getText().toString());
         updateUI();
         editText.setText("");
+
+        if (game.isGameOver()) {
+            if (game.getWord().equals(game.getMaskedWord())) {
+                gameResult.setVisibility(View.VISIBLE);
+                gameResult.setText(R.string.you_did_it);
+            } else {
+            }
+        }
     }
 
     public Hangman getGame() {
