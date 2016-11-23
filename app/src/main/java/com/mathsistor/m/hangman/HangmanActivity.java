@@ -59,10 +59,11 @@ public class HangmanActivity extends AppCompatActivity {
         editText.setText("");
 
         if (game.isGameOver()) {
+            gameResult.setVisibility(View.VISIBLE);
             if (game.getWord().equals(game.getMaskedWord())) {
-                gameResult.setVisibility(View.VISIBLE);
                 gameResult.setText(R.string.you_did_it);
             } else {
+                gameResult.setText(R.string.you_lost);
             }
         }
     }
