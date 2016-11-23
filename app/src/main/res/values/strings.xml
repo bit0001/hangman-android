@@ -6,4 +6,5 @@
     <string name="alphabet">abcdefghijklmnopqrstuvwxyz</string>
     <string name="you_lost">You lost! Try a new game.</string>
     <string name="empty_guess">You entered an empty guess!</string>
+    <string name="invalid_character">You have entered an invalid character.</string>
 </resources>
