@@ -43,6 +43,7 @@ public class Hangman {
 
         if (guess.length() > 1) {
             if (guess.equals(word)) {
+                maskedWord = word;
                 isGameOver = true;
                 return;
             }
