@@ -27,6 +27,16 @@ public class WinningLosingTest {
     }
 
     @Test
+    public void whenPlayerGuessesWordDirectlyUIIsUpdated() {
+        String word = activity.getGame().getWord();
+        onView(withId(R.id.text_field)).perform(typeText(word));
+        onView(withId(R.id.guess_button)).perform(click());
+        onView(withId(R.id.word_to_guess)).check(matches(withText(word)));
+        onView(withId(R.id.game_result)).check(matches(isDisplayed()));
+        onView(withId(R.id.game_result)).check(matches(withText(activity.getString(R.string.you_did_it))));
+    }
+
+    @Test
     public void whenUserGuessTheWordUIIsUpdated() {
         String word = activity.getGame().getWord();
         for (Character c: word.toCharArray()) {
