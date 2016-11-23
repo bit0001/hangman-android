@@ -37,4 +37,25 @@ public class WinningLosingTest {
         onView(withId(R.id.game_result)).check(matches(isDisplayed()));
         onView(withId(R.id.game_result)).check(matches(withText(activity.getString(R.string.you_did_it))));
     }
+
+    @Test
+    public void whenNoGuessesLeftThenUIIsUpdated() {
+        Hangman game = activity.getGame();
+        for (int i = 0; i < Hangman.MAX_GUESSES; i++) {
+            onView(withId(R.id.text_field)).perform(typeText(getLetterNotInWord(game)));
+            onView(withId(R.id.guess_button)).perform(click());
+        }
+        onView(withId(R.id.game_result)).check(matches(isDisplayed()));
+        onView(withId(R.id.game_result)).check(matches(withText(activity.getString(R.string.you_lost))));
+    }
+
+    private String getLetterNotInWord(Hangman game) {
+        String letters = activity.getResources().getString(R.string.alphabet);
+        for (Character c: letters.toCharArray()) {
+            if (!game.getGuessedLetters().contains(c) && !game.getWord().contains(String.valueOf(c))) {
+                return String.valueOf(c);
+            }
+        }
+        return null;
+    }
 }
