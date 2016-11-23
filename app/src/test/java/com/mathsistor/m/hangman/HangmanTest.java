@@ -41,7 +41,7 @@ public class HangmanTest {
 
     @Test
     public void whenUserGuessesMoreThanOneCharacterThenAnExceptionIsThrownIfWordIsNotGuessed() throws Exception {
-        exception.expect(RuntimeException.class);
+        exception.expect(WrongWordGuessedException.class);
         hangman.guess("love");
     }
 

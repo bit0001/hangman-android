@@ -62,7 +62,7 @@ public class Hangman {
         }
     }
 
-    private boolean userGuessedWordDirectly(String guess) {
+    private boolean userGuessedWordDirectly(String guess) throws WrongWordGuessedException {
         if (guess.length() > 1) {
             if (guess.equals(word)) {
                 maskedWord = word;
@@ -75,7 +75,7 @@ public class Hangman {
                 isGameOver = true;
             }
 
-            throw new RuntimeException("Incorrect word guess");
+            throw new WrongWordGuessedException("Guessed word is wrong.");
         }
         return false;
     }
