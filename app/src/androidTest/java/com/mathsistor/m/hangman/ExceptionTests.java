@@ -43,4 +43,13 @@ public class ExceptionTests {
         onView(withText(R.string.invalid_character)).inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).check(matches(isDisplayed()));
     }
 
+    @Test
+    public void whenUserGuessesAWrongWordUIIsUpdated() {
+        onView(withId(R.id.text_field)).perform(typeText("pptq"));
+        onView(withId(R.id.guess_button)).perform(click());
+        onView(withText(R.string.wrong_guess)).inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).check(matches(isDisplayed()));
+        onView(withId(R.id.remaining_guesses)).check(matches(withText(
+                "(" + (Hangman.MAX_GUESSES - 1) + activity.getResources().getString(R.string.guesses_left)
+        )));
+    }
 }
