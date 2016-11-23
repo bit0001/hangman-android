@@ -29,32 +29,11 @@ public class Hangman {
     }
 
     public void guess(String guess) {
-        if (isGameOver) {
-            throw new RuntimeException("Game is over");
-        }
+        checkGameIsNotOver();
+        checkGuessIsNotEmpty(guess);
+        checkGuessIsAValidCharacter(guess);
 
-        if (guess.matches("[^A-Za-z]{1}")) {
-            throw new RuntimeException("Invalid character");
-        }
-
-        if (guess.isEmpty()) {
-            throw new RuntimeException("Empty string");
-        }
-
-        if (guess.length() > 1) {
-            if (guess.equals(word)) {
-                maskedWord = word;
-                isGameOver = true;
-                return;
-            }
-            guessesLeft--;
-
-            if (guessesLeft == 0) {
-                isGameOver = true;
-            }
-
-            throw new RuntimeException("Incorrect word guess");
-        }
+        if (userGuessedWordDirectly(guess)) return;
 
         if (guessedLetters.contains(guess.charAt(0))) {
             return;
@@ -80,6 +59,42 @@ public class Hangman {
 
         if (maskedWord.equals(word) || guessesLeft == 0) {
             isGameOver = true;
+        }
+    }
+
+    private boolean userGuessedWordDirectly(String guess) {
+        if (guess.length() > 1) {
+            if (guess.equals(word)) {
+                maskedWord = word;
+                isGameOver = true;
+                return true;
+            }
+            guessesLeft--;
+
+            if (guessesLeft == 0) {
+                isGameOver = true;
+            }
+
+            throw new RuntimeException("Incorrect word guess");
+        }
+        return false;
+    }
+
+    private void checkGuessIsNotEmpty(String guess) {
+        if (guess.isEmpty()) {
+            throw new RuntimeException("Empty string");
+        }
+    }
+
+    private void checkGuessIsAValidCharacter(String guess) {
+        if (guess.matches("[^A-Za-z]{1}")) {
+            throw new RuntimeException("Invalid character");
+        }
+    }
+
+    private void checkGameIsNotOver() {
+        if (isGameOver) {
+            throw new RuntimeException("Game is over");
         }
     }
 
