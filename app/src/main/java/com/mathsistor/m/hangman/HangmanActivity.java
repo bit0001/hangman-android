@@ -65,8 +65,7 @@ public class HangmanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_hangman);
         loadWords();
         ButterKnife.bind(this);
-        game = new Hangman(getRandomWord());
-        updateUI();
+        newGame(null);
     }
 
     private void updateUI() {
@@ -143,4 +142,5 @@ public class HangmanActivity extends AppCompatActivity {
         Random random = new Random();
         return words.get(random.nextInt(words.size()));
     }
+
 }
