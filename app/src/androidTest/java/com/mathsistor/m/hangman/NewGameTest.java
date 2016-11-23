@@ -11,8 +11,10 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.not;
 
 public class NewGameTest {
 
@@ -34,6 +36,15 @@ public class NewGameTest {
         onView(withId(R.id.guess_button)).perform(click());
         onView(withId(R.id.new_game_button)).perform(click());
         onView(withId(R.id.word_to_guess)).check(matches(withText(getMaskedWord())));
+    }
+
+    @Test
+    public void givenPlayerHasWonAGameWhenHePressesNewGameUIIsUpdatedProperly() {
+        String word = activity.getGame().getWord();
+        onView(withId(R.id.text_field)).perform(typeText(word));
+        onView(withId(R.id.guess_button)).perform(click());
+        onView(withId(R.id.new_game_button)).perform(click());
+        onView(withId(R.id.game_result)).check(matches(not(isDisplayed())));
     }
 
     @NonNull
