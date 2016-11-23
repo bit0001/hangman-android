@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -54,7 +55,18 @@ public class HangmanActivity extends AppCompatActivity {
     }
 
     public void guess(View view) {
-        game.guess(editText.getText().toString());
+        try {
+            game.guess(editText.getText().toString());
+        } catch (RuntimeException e) {
+            String message = e.getMessage();
+
+            switch (message) {
+                case "Empty string":
+                    Toast.makeText(this, R.string.empty_guess, Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
+
         updateUI();
         editText.setText("");
 
