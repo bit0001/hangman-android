@@ -71,9 +71,10 @@ public class GuessLetterTest {
 
     private String getMaskedWordButFirstCharacter() {
         String word = activity.getGame().getWord();
-        StringBuilder maskedWord = new StringBuilder(String.valueOf(word.charAt(0)));
-        for (int i = 1; i < word.length(); i++) {
-            maskedWord.append("?");
+        Character character = word.charAt(0);
+        StringBuilder maskedWord = new StringBuilder();
+        for (int i = 0; i < word.length(); i++) {
+            maskedWord.append(word.charAt(i) == character ? character : "?");
         }
 
         return maskedWord.toString();
